@@ -7,19 +7,17 @@ import { SubmitDeck,STORAGE_KEY } from "../../utils/api"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import Styles from "../../utils/styles"
 
-const App = () => {
+const App =  () => {
     const dispatch = useDispatch()
-    const stateDeck = useSelector(s=>s)
     const [deck, setDeck] = useState("")
-    const fromDb = async ()=>await AsyncStorage.getItem(STORAGE_KEY)
+
     const handleSubmit = (event)=>{
-        event.preventDefault()
         const data = {[deck]:{
             title:deck,
             questions:[]
         }}
         dispatch(AddDeck(data))
-        return SubmitDeck(data,deck)
+        SubmitDeck(data)
     }
     return (
         

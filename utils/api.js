@@ -2,8 +2,8 @@ import AsyncStorage  from "@react-native-async-storage/async-storage";
 
 export const STORAGE_KEY = "STORAGE_KEY";
 
-export const SubmitDeck = async (entry,key)=>{
-    const result = await AsyncStorage.mergeItem(STORAGE_KEY,JSON.stringify({[key]:entry}))
+export const SubmitDeck = async (entry)=>{
+    const result = await AsyncStorage.mergeItem(STORAGE_KEY,JSON.stringify(entry))
     return result
 }
 

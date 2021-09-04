@@ -7,14 +7,15 @@ import Styles from '../../utils/styles'
 
 const Home = () => {
     
-    const state = useSelector(s => s)
+    const state = useSelector(s => s) 
     return (
         <ScrollView style={Styles.main}>
-            {Object.keys(state).map(s => {
-                const cards = state[s][s].questions.length
+            {state && Object.keys(state).map(s => {
+                const cards = state[s].questions.length
+                console.log(state)
                 return <TouchableOpacity key={s} style={Styles.decks}>
                 <Text style={Styles.deckTexts}>{s}</Text>
-                <Text style={Styles.deckTexts}>{cards===1 ? cards+ " Card" : cards + ' cards'} </Text>
+                {/* <Text style={Styles.deckTexts}>{cards===1 ? cards+ " Card" : cards + ' cards'} </Text> */}
                 </TouchableOpacity>
             })}
         </ScrollView>
