@@ -1,35 +1,38 @@
 import React from "react"
-import { View, Text, TextInput, TouchableOpacity,Alert } from "react-native"
+import { View, Text, TextInput, TouchableOpacity } from "react-native"
 import { useState } from "react"
-import { useSelector,useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { AddDeck } from "../actions/deck"
-import { SubmitDeck,STORAGE_KEY } from "../../utils/api"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import { SubmitDeck } from "../../utils/api"
 import Styles from "../../utils/styles"
 
-const App =  () => {
+const App =  ({navigation}) => {
     const dispatch = useDispatch()
     const [deck, setDeck] = useState("")
 
-    const handleSubmit = (event)=>{
+    const handleSubmit = ()=>{
         const data = {[deck]:{
             title:deck,
             questions:[]
         }}
+        setDeck("")
         dispatch(AddDeck(data))
         SubmitDeck(data)
+        navigation.navigate("Deck",{deck:deck})
     }
     return (
         
         <View  style={Styles.main}>
-            <View style={{flex:1, justifyContent:"center"}}>
-            <Text style={{fontSize:20,textAlign:"center"}}>
+            <View style={Styles.VerticalAlignCenter}>
+            <Text style={Styles.DeckHeader}>
                 Provide a title for the deck
             </Text>
             <TextInput style={{
                 height:40,
              borderWidth:1,borderRadius:5,
              marginTop:50}}
+             name={deck}
+             value={deck}
              onChangeText = {text=>setDeck(text)}/>
             </View>
                 <TouchableOpacity style={{borderRadius:5,

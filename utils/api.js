@@ -7,14 +7,13 @@ export const SubmitDeck = async (entry)=>{
     return result
 }
 
-export const RemoveDeck =(key)=>{
-    return AsyncStorage.getItem(STORAGE_KEY)
-    .then((result)=>{
-        const data= JSON.parse(result)
+export const RemoveDeck = async (key)=>{
+    const result = await AsyncStorage.getItem(STORAGE_KEY)
+        const data= await JSON.parse(result)
         data[key]=undefined,
         delete data[key]
-        AsyncStorage.setItem(STORAGE_KEY, json.JSON.stringify(data))
-    })
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    return result
 }
 
 export const AddQuestion = ()=>{

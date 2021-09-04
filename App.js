@@ -6,24 +6,18 @@ import { Provider } from 'react-redux';
 import deck from './components/reducers/deck';
 import Home from './components/views/Home';
 import styles from './utils/styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { STORAGE_KEY} from './utils/api'
-import { useDispatch } from 'react-redux';
-import { AddDeck, GetDecks} from './components/actions/deck'
-import { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Ionicons} from "@expo/vector-icons"
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Deck from './components/views/Deck';
+import StartQuiz from './components/views/StartQuiz';
 
 const AppEntry = ()=>{
-  const dispatch = useDispatch()
-    useEffect(() => {
-        AsyncStorage.getItem(STORAGE_KEY).then(s => dispatch(GetDecks(JSON.parse(s))))
-})
     const Tab = createBottomTabNavigator();
+    
   return (
               
-        <NavigationContainer >
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -46,25 +40,36 @@ const AppEntry = ()=>{
       >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Add Deck" component={AddDeckComponent} />
-      
+        
       </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 
 export default function App() {
-  
+  const Stack = createNativeStackNavigator();
   
   return (
+    <NavigationContainer>
     <Provider store ={createStore(deck)}>
       <View style={styles.container}>
         <StatusBar
           animated={true}
           backgroundColor="#61dafb"
         />
-        <AppEntry />
+        
+      <Stack.Navigator>
+        <Stack.Screen
+          name="AppEntry"
+          component={AppEntry}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Deck" component={Deck} />
+        <Stack.Screen name="StartQuiz" component={StartQuiz} />
+      </Stack.Navigator>
+    
+
       </View>
     </Provider>
-
+</NavigationContainer>
   );
 }
