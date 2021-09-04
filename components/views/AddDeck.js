@@ -2,20 +2,21 @@ import React from "react"
 import { View, Text, TextInput, TouchableOpacity } from "react-native"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { AddDeck } from "../actions/deck"
+import { AddDeck } from "../actions"
 import { SubmitDeck } from "../../utils/api"
 import Styles from "../../utils/styles"
 
 const App =  ({navigation}) => {
     const dispatch = useDispatch()
     const [deck, setDeck] = useState("")
-
+    console.log("hello")
     const handleSubmit = ()=>{
         const data = {[deck]:{
             title:deck,
             questions:[]
         }}
         setDeck("")
+        
         dispatch(AddDeck(data))
         SubmitDeck(data)
         navigation.navigate("Deck",{deck:deck})

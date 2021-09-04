@@ -4,7 +4,7 @@ import Styles from '../../utils/styles'
 import { useSelector } from 'react-redux'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { RemoveDeck } from '../../utils/api'
-import { DeleteDeck } from '../actions/deck'
+import { DeleteDeck } from '../actions'
 import { useDispatch } from 'react-redux'
 
 const Deck = ({ route, navigation }) => {
@@ -13,7 +13,6 @@ const Deck = ({ route, navigation }) => {
     const state = useSelector(state => state)
     let cards = 0
     if(state[deck]!==undefined){cards = state[deck].questions.length}
-
     const removeDeck =()=>{
         RemoveDeck(deck)
         navigation.navigate("Home")
@@ -27,8 +26,8 @@ const Deck = ({ route, navigation }) => {
             </Text>
 
             <View style = {Styles.deckOptions}>
-                <TouchableOpacity onPress={()=>navigation.navigate("Add Deck")}>
-                    <Text style = {Styles.button}>Add Deck</Text>
+                <TouchableOpacity onPress={()=>navigation.navigate("AddCard",{deck:deck})}>
+                    <Text style = {Styles.button}>Add Card</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress = {()=>navigation.navigate("StartQuiz")}>
                 <Text style = {Styles.button}>Start Quiz</Text>

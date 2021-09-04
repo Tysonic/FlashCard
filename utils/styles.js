@@ -55,12 +55,17 @@ const Styles = StyleSheet.create({
         padding:10,
         textAlign:"center",
         borderRadius:5,
-        color:"#3197fd"
+        color:"#3197fd",
+        alignSelf:"center"
     },
     delete:{
         color:"red",
         textAlign:"center",
         padding:10
+    },
+    textInput:{
+            height:40,
+         borderWidth:1,borderRadius:5,
     }
 })
 

@@ -12,12 +12,16 @@ export const RemoveDeck = async (key)=>{
         const data= await JSON.parse(result)
         data[key]=undefined,
         delete data[key]
-        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-    return result
+        const returnVal= await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    return returnVal
 }
 
-export const AddQuestion = ()=>{
-
+export const AddCardToDeckDB = async (deck,card)=>{
+    const data =  await AsyncStorage.getItem(STORAGE_KEY)
+    const decks = JSON.parse(data)
+    decks[deck].questions = decks[deck].questions.concat(card)
+    const result = await AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(decks))
+    return result
 }
 
 export const RemoveQuestion=()=>{

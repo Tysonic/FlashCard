@@ -7,7 +7,7 @@ import Styles from '../../utils/styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { STORAGE_KEY} from '../../utils/api'
 import { useDispatch } from 'react-redux';
-import { AddDeck, GetDecks} from '../actions/deck'
+import { AddDeck, GetDecks} from '../actions'
 import { useEffect } from 'react'
 
 

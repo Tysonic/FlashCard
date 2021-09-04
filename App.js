@@ -3,7 +3,7 @@ import { View, StatusBar } from 'react-native';
 import AddDeckComponent from "./components/views/AddDeck"
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import deck from './components/reducers/deck';
+import reducer from './components/reducers';
 import Home from './components/views/Home';
 import styles from './utils/styles';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,6 +12,7 @@ import {Ionicons} from "@expo/vector-icons"
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Deck from './components/views/Deck';
 import StartQuiz from './components/views/StartQuiz';
+import AddCard from './components/views/AddCard';
 
 const AppEntry = ()=>{
     const Tab = createBottomTabNavigator();
@@ -50,7 +51,7 @@ export default function App() {
   
   return (
     <NavigationContainer>
-    <Provider store ={createStore(deck)}>
+    <Provider store ={createStore(reducer)}>
       <View style={styles.container}>
         <StatusBar
           animated={true}
@@ -65,6 +66,7 @@ export default function App() {
         />
         <Stack.Screen name="Deck" component={Deck} />
         <Stack.Screen name="StartQuiz" component={StartQuiz} />
+        <Stack.Screen name="AddCard" component={AddCard} />
       </Stack.Navigator>
     
 

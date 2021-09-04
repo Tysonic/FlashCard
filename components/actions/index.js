@@ -1,7 +1,6 @@
 export const ADD_DECK = "ADD_DECK"
 export const GET_DECKS = "GET_DECKS"
-export const REMOVE_DECK = "REMOVE_DECK"
-
+export const ADD_CARD = "ADD_CARD"
 
 export const AddDeck = (deck)=>{
 return {
@@ -22,4 +21,12 @@ export const DeleteDeck = (id)=>{
         type:REMOVE_DECK,
         id
     }
+}
+
+export const AddCardToDeck=(deck,card)=>{
+return {
+    type:ADD_CARD,
+    deck,
+    card
+}
 }

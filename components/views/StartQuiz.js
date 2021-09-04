@@ -1,7 +1,7 @@
 import React from 'react'
 import { View,Text } from 'react-native'
 
-const StartQuis = () => {
+const StartQuiz = () => {
     return (
         <View>
             <Text>Quiz details</Text>
@@ -9,4 +9,4 @@ const StartQuis = () => {
     )
 }
 
-export default StartQuis
+export default StartQuiz
