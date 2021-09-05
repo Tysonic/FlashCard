@@ -15,9 +15,7 @@ export const SubmitDeck = async (entry) => {
   );
   return result;
 };
-
-export const RemoveDeck = async (key) => {
-  const result = await AsyncStorage.getItem(STORAGE_KEY);
+export const ClearAnswer =async (key)=>{
   const answers = await JSON.parse(await AsyncStorage.getItem(ANSWER_KEY));
   const seletedAnswers = Object.keys(answers).filter((s) => s.startsWith(key));
   seletedAnswers.map((s) => {
@@ -25,6 +23,11 @@ export const RemoveDeck = async (key) => {
     delete answers[s];
   });
   await AsyncStorage.setItem(ANSWER_KEY, JSON.stringify(answers));
+}
+
+export const RemoveDeck = async (key) => {
+  const result = await AsyncStorage.getItem(STORAGE_KEY);
+  await ClearAnswer(key)
   const data = await JSON.parse(result);
   data[key] = undefined;
   delete data[key];

@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text } from "react-native";
 import Styles from "../../utils/styles";
-import { AnswerQustion, ANSWER_KEY } from "../../utils/api";
+import { AnswerQustion, ANSWER_KEY,ClearAnswer } from "../../utils/api";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const StartQuiz = ({ route, navigation }) => {
   const [displayResult, setDisplayResult] = useState(false);
@@ -38,6 +39,12 @@ const StartQuiz = ({ route, navigation }) => {
   if (QuestionList.length !== 0) {
     selectedQuestion = QuestionList[index];
   }
+  const handleReset=()=>{
+    ClearAnswer(deck.title)
+    setDisplayResult(false)
+    setFromDb([])
+    setIndex(0)
+  }
 
   const handleAnswer = (text) => {
     AnswerQustion({
@@ -69,13 +76,24 @@ const StartQuiz = ({ route, navigation }) => {
         </View>
       ) : displayResult ? (
         <View style={{ flex: 1 }}>
-          <Text>Restart Quiz</Text>
           <View style={Styles.VerticalAlignCenter}>
             <Text style={Styles.deckTexts}>
               passed
               {" " + JSON.stringify(fromDb.filter((s) => s === true).length)}/
               {JSON.stringify(fromDb.length)}
             </Text>
+            <View style={{ marginTop: 50 }}>
+            <TouchableOpacity onPress={handleReset}>
+              <Text style={Styles.button}>Restart Quiz</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Deck",{deck:deck.title})}>
+              <Text
+                style={[Styles.button, { color: "gray", borderColor: "gray" }]}
+              >
+                Back to deck
+              </Text>
+            </TouchableOpacity>
+          </View>
           </View>
         </View>
       ) : (
