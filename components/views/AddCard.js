@@ -11,14 +11,14 @@ const AddCard = ({route,navigation}) => {
     const {deck} = route.params
     const [question,setQuestion] = useState("")
     const [answer,setAnswer] = useState("")
-    console.log("hello")
     const handleSubmit = ()=>{
-        dispatch(AddCardToDeck(deck,{answer:answer,question:question}))
-        AddCardToDeckDB(deck,{answer:answer,question:question})
-        navigation.navigate("Deck",{deck:deck})
+        dispatch(AddCardToDeck(deck.title,{answer:answer,question:question}))
+        AddCardToDeckDB(deck.title,{answer:answer,question:question})
+        navigation.navigate("Deck",{deck:deck.title})
     }
     return (
         <View  style={Styles.main}>
+            <Text style={Styles.deckTexts}>Title: {deck.title}</Text>
             <View style={Styles.VerticalAlignCenter}>
                 <View style={{marginBottom:30}}>
             <TextInput style={Styles.textInput}

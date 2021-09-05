@@ -1,5 +1,7 @@
 import AsyncStorage  from "@react-native-async-storage/async-storage";
 
+export const ANSWER_KEY = new Date().getFullYear().toString() 
++ new Date().getMonth().toString() +new Date().getDate().toString();
 export const STORAGE_KEY = "STORAGE_KEY";
 
 export const SubmitDeck = async (entry)=>{
@@ -7,10 +9,18 @@ export const SubmitDeck = async (entry)=>{
     return result
 }
 
+
 export const RemoveDeck = async (key)=>{
     const result = await AsyncStorage.getItem(STORAGE_KEY)
+    const answers = await JSON.parse(await AsyncStorage.getItem(ANSWER_KEY))
+    const seletedAnswers = Object.keys(answers).filter(s=>s.startsWith(key))
+    seletedAnswers.map(s=>{
+        answers[s]=undefined
+        delete answers[s]
+    })
+    await AsyncStorage.setItem(ANSWER_KEY,JSON.stringify(answers))
         const data= await JSON.parse(result)
-        data[key]=undefined,
+        data[key]=undefined
         delete data[key]
         const returnVal= await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
     return returnVal
@@ -24,17 +34,8 @@ export const AddCardToDeckDB = async (deck,card)=>{
     return result
 }
 
-export const RemoveQuestion=()=>{
 
-}
-
-export const AnswerQustion = ()=>{
-
-}
-export const RessetQuestion =()=>{
-
-}
-
-export const getInitialData = ()=>{
-    
+export const AnswerQustion = async ({deck,question,passed})=>{
+    const key =deck+" "+question
+return await AsyncStorage.mergeItem(ANSWER_KEY,JSON.stringify({[key]:passed}))
 }

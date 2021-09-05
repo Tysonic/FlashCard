@@ -6,8 +6,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { RemoveDeck } from '../../utils/api'
 import { DeleteDeck } from '../actions'
 import { useDispatch } from 'react-redux'
-
+import { useEffect } from 'react'
 const Deck = ({ route, navigation }) => {
+    
     const dispatch = useDispatch()
     const { deck } = route.params
     const state = useSelector(state => state)
@@ -17,6 +18,9 @@ const Deck = ({ route, navigation }) => {
         RemoveDeck(deck)
         navigation.navigate("Home")
     }
+    useEffect(() => {
+        navigation.setOptions({ title:deck  })
+    }, [])
     return (
         <View style={Styles.main}>
             <Text style={Styles.header}>{deck}</Text>
@@ -26,10 +30,10 @@ const Deck = ({ route, navigation }) => {
             </Text>
 
             <View style = {Styles.deckOptions}>
-                <TouchableOpacity onPress={()=>navigation.navigate("AddCard",{deck:deck})}>
+                <TouchableOpacity onPress={()=>navigation.navigate("Add Card",{deck:state[deck]})}>
                     <Text style = {Styles.button}>Add Card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress = {()=>navigation.navigate("StartQuiz")}>
+                <TouchableOpacity onPress = {()=>navigation.navigate("Quiz",{deck:state[deck]})}>
                 <Text style = {Styles.button}>Start Quiz</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={removeDeck}>

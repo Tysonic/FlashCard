@@ -11,7 +11,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Ionicons} from "@expo/vector-icons"
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Deck from './components/views/Deck';
-import StartQuiz from './components/views/StartQuiz';
+import Quiz from './components/views/Quiz';
 import AddCard from './components/views/AddCard';
 
 const AppEntry = ()=>{
@@ -65,8 +65,8 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Deck" component={Deck} />
-        <Stack.Screen name="StartQuiz" component={StartQuiz} />
-        <Stack.Screen name="AddCard" component={AddCard} />
+        <Stack.Screen name="Quiz" component={Quiz} />
+        <Stack.Screen name="Add Card" component={AddCard} />
       </Stack.Navigator>
     
 

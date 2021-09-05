@@ -4,7 +4,6 @@ export const ADD_CARD = "ADD_CARD"
 
 export const AddDeck = (deck)=>{
 return {
-    
     type:ADD_DECK,
     deck
 }

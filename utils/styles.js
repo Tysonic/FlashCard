@@ -63,6 +63,12 @@ const Styles = StyleSheet.create({
         textAlign:"center",
         padding:10
     },
+    subButton:{
+        textAlign:'center',
+        marginTop:10,
+        color:"#3197fd",
+        fontSize:20
+    },
     textInput:{
             height:40,
          borderWidth:1,borderRadius:5,

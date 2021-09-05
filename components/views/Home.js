@@ -13,10 +13,10 @@ import { useEffect } from 'react'
 
 const Home = ({navigation}) => {
     const dispatch = useDispatch()
-    useEffect(() => {  
+    useEffect(() => { 
+        // AsyncStorage.clear() 
         AsyncStorage.getItem(STORAGE_KEY).then(s => dispatch(GetDecks(JSON.parse(s))))
 })
-    
     const state = useSelector(s => s) 
     return (
         <ScrollView style={Styles.main}>

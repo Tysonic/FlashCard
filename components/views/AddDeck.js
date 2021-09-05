@@ -9,7 +9,6 @@ import Styles from "../../utils/styles"
 const App =  ({navigation}) => {
     const dispatch = useDispatch()
     const [deck, setDeck] = useState("")
-    console.log("hello")
     const handleSubmit = ()=>{
         const data = {[deck]:{
             title:deck,
@@ -36,12 +35,9 @@ const App =  ({navigation}) => {
              value={deck}
              onChangeText = {text=>setDeck(text)}/>
             </View>
-                <TouchableOpacity style={{borderRadius:5,
-                    borderColor:"#63a8ea",alignSelf:"center",
-                     borderWidth:3,width:150,
-                     marginBottom:50}}
+                <TouchableOpacity style={{marginBottom:50}}
                      onPress={handleSubmit}>
-                    <Text style={{fontSize:20, textAlign:"center", color:"#63a8ea"}}>
+                    <Text style={Styles.button}>
                     Create Deck
                     </Text>
                 </TouchableOpacity>
