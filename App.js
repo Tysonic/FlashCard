@@ -13,10 +13,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Deck from "./components/views/Deck";
 import Quiz from "./components/views/Quiz";
 import AddCard from "./components/views/AddCard";
+import { setLocalNotification, registerForPushNotificationsAsync } from './utils/helpers'
+import { useEffect } from "react";
 
 const AppEntry = () => {
   const Tab = createBottomTabNavigator();
-
+useEffect(() => {
+  setLocalNotification()
+}, [])
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

@@ -5,6 +5,7 @@ import { AnswerQustion, ANSWER_KEY,ClearAnswer } from "../../utils/api";
 import { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setLocalNotification,clearLocalNotification } from "../../utils/helpers";
 
 
 const StartQuiz = ({ route, navigation }) => {
@@ -60,6 +61,8 @@ const StartQuiz = ({ route, navigation }) => {
     }
     if (index + 1 === QuestionList.length) {
       setDisplayResult(true);
+      clearLocalNotification()
+      setLocalNotification()
     } else {
       setIndex(index + 1);
     }
@@ -90,7 +93,7 @@ const StartQuiz = ({ route, navigation }) => {
               <Text
                 style={[Styles.button, { color: "gray", borderColor: "gray" }]}
               >
-                Back to deck
+                Back to Deck
               </Text>
             </TouchableOpacity>
           </View>

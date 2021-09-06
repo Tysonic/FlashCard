@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Notifications, Permissions } from "expo";
 
 export const ANSWER_KEY =
   new Date().getFullYear().toString() +

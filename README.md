@@ -14,3 +14,6 @@ run `yarn start` to start the project
 react-naviation: for managing routing in the application
 react-redux && redux: for stage management
 @react-native-async-storage/async-storage: to act as local database for storage
+
+### platforms.
+This project should work fine both on android and ios, however it has only been tested on android
